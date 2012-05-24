@@ -1,6 +1,5 @@
 var wrap = require('./lib/wrap');
 var fs = require('fs');
-var coffee = require('coffee-script');
 var EventEmitter = require('events').EventEmitter;
 
 var exports = module.exports = function (entryFile, opts) {
@@ -46,11 +45,7 @@ var exports = module.exports = function (entryFile, opts) {
     }
     
     var watches = {};
-    var w = wrap({ cache : opts.cache, debug : opts.debug })
-        .register('.coffee', function (body) {
-            return coffee.compile(body)
-        })
-    ;
+    var w = wrap({ cache : opts.cache, debug : opts.debug });
     
     if (opts.watch) {
         
